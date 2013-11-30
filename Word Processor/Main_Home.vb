@@ -177,9 +177,11 @@
         Dim saveFileName As String
 
         With saveFileDialog
+            .AddExtension = True
+            .CheckPathExists = True
             .DefaultExt = ".rtf"
             .Filter = "Rich Text Format|*.rtf"
-            .InitialDirectory = "C:\My Documents"
+            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
         End With
 
         If saveFileName = "" Then
