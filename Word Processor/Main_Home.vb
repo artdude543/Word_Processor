@@ -10,6 +10,7 @@
     Dim fontGlobalFont As String
     Dim fontGlobalSize As Integer = 9
     Dim fontGlobalStyle As FontStyle
+
     Private Sub txtField_TextChanged(sender As Object, e As EventArgs) Handles txtField.TextChanged
 
         statsWordCount.Text = "Word Count: " & txtField.Text.Length
@@ -165,6 +166,33 @@
             txtField.SelectionFont = fontArial
             clickFontArial = 1
             fontGlobalFont = "Calibri"
+
+        End If
+
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+
+        Dim saveFileDialog As SaveFileDialog = New System.Windows.Forms.SaveFileDialog
+        Dim saveFileName As String
+
+        With saveFileDialog
+            .DefaultExt = ".rtf"
+            .Filter = "Rich Text Format|*.rtf"
+            .InitialDirectory = "C:\My Documents"
+        End With
+
+        If saveFileName = "" Then
+
+            If saveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+                saveFileName = saveFileDialog.FileName
+                txtField.SaveFile(saveFileName, RichTextBoxStreamType.RichText)
+            End If
+
+        Else
+
+            txtField.SaveFile(saveFileName, RichTextBoxStreamType.RichText)
 
         End If
 

@@ -31,6 +31,7 @@ Partial Class Main_Home
         Me.FontToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimesNewRomanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CalibriToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StyleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BoldToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UnderlineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,7 +46,6 @@ Partial Class Main_Home
         Me.cmdItalic = New System.Windows.Forms.ToolStripButton()
         Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
         Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
-        Me.CalibriToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuHome.SuspendLayout()
         Me.statusHome.SuspendLayout()
         Me.toolStripHome.SuspendLayout()
@@ -69,7 +69,7 @@ Partial Class Main_Home
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'CloseToolStripMenuItem
@@ -89,7 +89,7 @@ Partial Class Main_Home
         '
         Me.FontToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TimesNewRomanToolStripMenuItem, Me.ArialToolStripMenuItem, Me.CalibriToolStripMenuItem})
         Me.FontToolStripMenuItem1.Name = "FontToolStripMenuItem1"
-        Me.FontToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.FontToolStripMenuItem1.Size = New System.Drawing.Size(99, 22)
         Me.FontToolStripMenuItem1.Text = "Font"
         '
         'TimesNewRomanToolStripMenuItem
@@ -104,11 +104,17 @@ Partial Class Main_Home
         Me.ArialToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.ArialToolStripMenuItem.Text = "Arial"
         '
+        'CalibriToolStripMenuItem
+        '
+        Me.CalibriToolStripMenuItem.Name = "CalibriToolStripMenuItem"
+        Me.CalibriToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.CalibriToolStripMenuItem.Text = "Calibri"
+        '
         'StyleToolStripMenuItem
         '
         Me.StyleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoldToolStripMenuItem, Me.UnderlineToolStripMenuItem, Me.ItalicToolStripMenuItem})
         Me.StyleToolStripMenuItem.Name = "StyleToolStripMenuItem"
-        Me.StyleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StyleToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.StyleToolStripMenuItem.Text = "Style"
         '
         'BoldToolStripMenuItem
@@ -152,6 +158,9 @@ Partial Class Main_Home
         '
         'txtField
         '
+        Me.txtField.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtField.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtField.Location = New System.Drawing.Point(12, 58)
         Me.txtField.Name = "txtField"
@@ -206,12 +215,6 @@ Partial Class Main_Home
         Me.cmbFontSize.Items.AddRange(New Object() {"8", "9", "10", "11", "12", "13", "14", "15"})
         Me.cmbFontSize.Name = "cmbFontSize"
         Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
-        '
-        'CalibriToolStripMenuItem
-        '
-        Me.CalibriToolStripMenuItem.Name = "CalibriToolStripMenuItem"
-        Me.CalibriToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.CalibriToolStripMenuItem.Text = "Calibri"
         '
         'Main_Home
         '
