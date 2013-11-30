@@ -206,6 +206,7 @@
 
         With openFileDialog
             .AddExtension = True
+            .CheckPathExists = True
             .DefaultExt = ".rtf"
             .Filter = "Rich Text Format|*.rtf"
             .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments

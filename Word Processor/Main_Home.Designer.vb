@@ -25,6 +25,7 @@ Partial Class Main_Home
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main_Home))
         Me.menuHome = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -41,12 +42,12 @@ Partial Class Main_Home
         Me.statsWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.txtField = New System.Windows.Forms.RichTextBox()
         Me.toolStripHome = New System.Windows.Forms.ToolStrip()
+        Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
+        Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
         Me.cmdBold = New System.Windows.Forms.ToolStripButton()
         Me.cmdUnderline = New System.Windows.Forms.ToolStripButton()
         Me.cmdItalic = New System.Windows.Forms.ToolStripButton()
-        Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
-        Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
-        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuHome.SuspendLayout()
         Me.statusHome.SuspendLayout()
         Me.toolStripHome.SuspendLayout()
@@ -67,10 +68,16 @@ Partial Class Main_Home
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
+        'OpenToolStripMenuItem
+        '
+        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.OpenToolStripMenuItem.Text = "Open"
+        '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'CloseToolStripMenuItem
@@ -138,6 +145,7 @@ Partial Class Main_Home
         '
         'HelpToolStripMenuItem
         '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
@@ -178,10 +186,22 @@ Partial Class Main_Home
         Me.toolStripHome.TabIndex = 3
         Me.toolStripHome.Text = "ToolStrip1"
         '
+        'lblFontSize
+        '
+        Me.lblFontSize.Name = "lblFontSize"
+        Me.lblFontSize.Size = New System.Drawing.Size(57, 22)
+        Me.lblFontSize.Text = "Font Size:"
+        '
+        'cmbFontSize
+        '
+        Me.cmbFontSize.Items.AddRange(New Object() {"8", "9", "10", "11", "12", "13", "14", "15"})
+        Me.cmbFontSize.Name = "cmbFontSize"
+        Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
+        '
         'cmdBold
         '
         Me.cmdBold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdBold.Image = CType(resources.GetObject("cmdBold.Image"), System.Drawing.Image)
+        Me.cmdBold.Image = Global.Word_Processor.My.Resources.Resources.fontBold
         Me.cmdBold.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.cmdBold.Name = "cmdBold"
         Me.cmdBold.Size = New System.Drawing.Size(23, 22)
@@ -199,29 +219,17 @@ Partial Class Main_Home
         'cmdItalic
         '
         Me.cmdItalic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdItalic.Image = CType(resources.GetObject("cmdItalic.Image"), System.Drawing.Image)
+        Me.cmdItalic.Image = Global.Word_Processor.My.Resources.Resources.fontItalic
         Me.cmdItalic.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.cmdItalic.Name = "cmdItalic"
         Me.cmdItalic.Size = New System.Drawing.Size(23, 22)
         Me.cmdItalic.Text = "Italic"
         '
-        'lblFontSize
+        'AboutToolStripMenuItem
         '
-        Me.lblFontSize.Name = "lblFontSize"
-        Me.lblFontSize.Size = New System.Drawing.Size(57, 22)
-        Me.lblFontSize.Text = "Font Size:"
-        '
-        'cmbFontSize
-        '
-        Me.cmbFontSize.Items.AddRange(New Object() {"8", "9", "10", "11", "12", "13", "14", "15"})
-        Me.cmbFontSize.Name = "cmbFontSize"
-        Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
-        '
-        'OpenToolStripMenuItem
-        '
-        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.OpenToolStripMenuItem.Text = "Open"
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
         '
         'Main_Home
         '
@@ -269,5 +277,6 @@ Partial Class Main_Home
     Friend WithEvents ArialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CalibriToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
