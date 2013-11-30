@@ -46,6 +46,7 @@ Partial Class Main_Home
         Me.cmdItalic = New System.Windows.Forms.ToolStripButton()
         Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
         Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuHome.SuspendLayout()
         Me.statusHome.SuspendLayout()
         Me.toolStripHome.SuspendLayout()
@@ -61,7 +62,7 @@ Partial Class Main_Home
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveToolStripMenuItem, Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.CloseToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -216,6 +217,12 @@ Partial Class Main_Home
         Me.cmbFontSize.Name = "cmbFontSize"
         Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
         '
+        'OpenToolStripMenuItem
+        '
+        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenToolStripMenuItem.Text = "Open"
+        '
         'Main_Home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -261,5 +268,6 @@ Partial Class Main_Home
     Friend WithEvents cmbFontSize As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents ArialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CalibriToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

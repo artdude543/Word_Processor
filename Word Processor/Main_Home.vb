@@ -174,7 +174,7 @@
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
 
         Dim saveFileDialog As SaveFileDialog = New System.Windows.Forms.SaveFileDialog
-        Dim saveFileName As String
+        Dim saveFileName As String = ""
 
         With saveFileDialog
             .AddExtension = True
@@ -195,6 +195,26 @@
         Else
 
             txtField.SaveFile(saveFileName, RichTextBoxStreamType.RichText)
+
+        End If
+
+    End Sub
+
+    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+
+        Dim openFileDialog As OpenFileDialog = New System.Windows.Forms.OpenFileDialog
+
+        With openFileDialog
+            .AddExtension = True
+            .DefaultExt = ".rtf"
+            .Filter = "Rich Text Format|*.rtf"
+            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+        End With
+
+        If (openFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK) _
+            And (openFileDialog.FileName.Length > 0) Then
+
+            txtField.LoadFile(openFileDialog.FileName)
 
         End If
 
