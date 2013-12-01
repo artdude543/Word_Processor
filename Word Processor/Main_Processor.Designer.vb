@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Main_Home
+Partial Class Main_Processor
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Main_Home
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main_Home))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main_Processor))
         Me.menuHome = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,16 +38,16 @@ Partial Class Main_Home
         Me.UnderlineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ItalicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusHome = New System.Windows.Forms.StatusStrip()
         Me.statsWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.txtField = New System.Windows.Forms.RichTextBox()
         Me.toolStripHome = New System.Windows.Forms.ToolStrip()
-        Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
-        Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
         Me.cmdBold = New System.Windows.Forms.ToolStripButton()
         Me.cmdUnderline = New System.Windows.Forms.ToolStripButton()
         Me.cmdItalic = New System.Windows.Forms.ToolStripButton()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
+        Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
         Me.menuHome.SuspendLayout()
         Me.statusHome.SuspendLayout()
         Me.toolStripHome.SuspendLayout()
@@ -150,6 +150,12 @@ Partial Class Main_Home
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
         'statusHome
         '
         Me.statusHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statsWordCount})
@@ -186,18 +192,6 @@ Partial Class Main_Home
         Me.toolStripHome.TabIndex = 3
         Me.toolStripHome.Text = "ToolStrip1"
         '
-        'lblFontSize
-        '
-        Me.lblFontSize.Name = "lblFontSize"
-        Me.lblFontSize.Size = New System.Drawing.Size(57, 22)
-        Me.lblFontSize.Text = "Font Size:"
-        '
-        'cmbFontSize
-        '
-        Me.cmbFontSize.Items.AddRange(New Object() {"8", "9", "10", "11", "12", "13", "14", "15"})
-        Me.cmbFontSize.Name = "cmbFontSize"
-        Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
-        '
         'cmdBold
         '
         Me.cmdBold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -210,6 +204,7 @@ Partial Class Main_Home
         'cmdUnderline
         '
         Me.cmdUnderline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdUnderline.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cmdUnderline.Image = CType(resources.GetObject("cmdUnderline.Image"), System.Drawing.Image)
         Me.cmdUnderline.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.cmdUnderline.Name = "cmdUnderline"
@@ -225,13 +220,19 @@ Partial Class Main_Home
         Me.cmdItalic.Size = New System.Drawing.Size(23, 22)
         Me.cmdItalic.Text = "Italic"
         '
-        'AboutToolStripMenuItem
+        'lblFontSize
         '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.AboutToolStripMenuItem.Text = "About"
+        Me.lblFontSize.Name = "lblFontSize"
+        Me.lblFontSize.Size = New System.Drawing.Size(57, 22)
+        Me.lblFontSize.Text = "Font Size:"
         '
-        'Main_Home
+        'cmbFontSize
+        '
+        Me.cmbFontSize.Items.AddRange(New Object() {"8", "9", "10", "11", "12", "13", "14", "15"})
+        Me.cmbFontSize.Name = "cmbFontSize"
+        Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
+        '
+        'Main_Processor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -241,7 +242,8 @@ Partial Class Main_Home
         Me.Controls.Add(Me.statusHome)
         Me.Controls.Add(Me.menuHome)
         Me.MainMenuStrip = Me.menuHome
-        Me.Name = "Main_Home"
+        Me.Name = "Main_Processor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Word Processor | Home"
         Me.menuHome.ResumeLayout(False)
         Me.menuHome.PerformLayout()

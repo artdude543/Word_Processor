@@ -73,11 +73,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main_Home.vb">
+    <Compile Include="Main_Processor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main_Home.Designer.vb">
-      <DependentUpon>Main_Home.vb</DependentUpon>
+    <Compile Include="Main_Processor.Designer.vb">
+      <DependentUpon>Main_Processor.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_Load.Designer.vb">
+      <DependentUpon>Main_Load.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main_Load.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -97,8 +103,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Main_Home.resx">
-      <DependentUpon>Main_Home.vb</DependentUpon>
+    <EmbeddedResource Include="Main_Processor.resx">
+      <DependentUpon>Main_Processor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main_Load.resx">
+      <DependentUpon>Main_Load.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -131,6 +140,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fontUnderline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontBoldClicked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontItalicClicked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontUnderlineClicked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\createNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downloadFile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

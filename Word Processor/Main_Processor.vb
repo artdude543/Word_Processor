@@ -1,4 +1,4 @@
-﻿Public Class Main_Home
+﻿Public Class Main_Processor
 
     Dim clickBold As Integer = 0
     Dim clickUnderline As Integer = 0
@@ -11,15 +11,55 @@
     Dim fontGlobalSize As Integer = 9
     Dim fontGlobalStyle As FontStyle
 
-    Private Sub txtField_TextChanged(sender As Object, e As EventArgs) Handles txtField.TextChanged
+    Dim fileGlobalName As String
 
-        statsWordCount.Text = "Word Count: " & txtField.Text.Length
+    Private Sub Main_Processor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        If (My.Settings.Open_Enable = True) Then
+
+            txtField.LoadFile(My.Settings.Open_FileName)
+
+            fileGlobalName = My.Settings.Open_FileName
+            Me.Text = "Word Processor | " & fileGlobalName
+
+            My.Settings.Open_Enable = False
+            My.Settings.Open_FileName = ""
+
+        ElseIf (My.Settings.Download_Enable = True) Then
+
+            txtField.LoadFile(My.Settings.Download_Temp)
+
+            fileGlobalName = My.Settings.Download_Temp
+            Me.Text = "Word Processor | " & fileGlobalName
+
+            My.Settings.Download_Enable = False
+
+        End If
 
     End Sub
 
-    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+    Private Sub Main_Processor_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
         Application.Exit()
+
+    End Sub
+
+    Private Sub txtField_KeyDown(sender As Object, e As KeyEventArgs) Handles txtField.KeyDown
+
+        If (e.KeyCode = Keys.B AndAlso e.Modifiers = Keys.Control) Then
+
+            cmdBold.PerformClick()
+
+        ElseIf (e.KeyCode = Keys.U AndAlso e.Modifiers = Keys.Control) Then
+
+
+            cmdUnderline.PerformClick()
+
+        ElseIf (e.KeyCode = Keys.I AndAlso e.Modifiers = Keys.Control) Then
+
+            cmdUnderline.PerformClick()
+
+        End If
 
     End Sub
 
@@ -27,17 +67,21 @@
 
         If clickBold = 1 Then
 
+            fontGlobalStyle = FontStyle.Regular
             Dim fontNormal As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
             txtField.SelectionFont = fontNormal
             clickBold = 0
-            fontGlobalStyle = FontStyle.Regular
+
+            cmdBold.BackgroundImage = My.Resources.fontBold
 
         Else
 
             Dim fontBold As New Font(fontGlobalFont, fontGlobalSize, FontStyle.Bold)
             txtField.SelectionFont = fontBold
-            clickBold = 0
+            clickBold = 1
             fontGlobalStyle = FontStyle.Bold
+
+            cmdBold.BackgroundImage = My.Resources.fontBoldClicked
 
         End If
 
@@ -47,10 +91,12 @@
 
         If clickUnderline = 1 Then
 
+            fontGlobalStyle = FontStyle.Regular
             Dim fontNormal As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
             txtField.SelectionFont = fontNormal
             clickUnderline = 0
-            fontGlobalStyle = FontStyle.Regular
+
+            cmdUnderline.BackgroundImage = My.Resources.fontUnderline
 
         Else
 
@@ -58,6 +104,8 @@
             txtField.SelectionFont = fontUnderline
             clickUnderline = 1
             fontGlobalStyle = FontStyle.Underline
+
+            cmdUnderline.BackgroundImage = My.Resources.fontUnderlineClicked
 
         End If
 
@@ -67,10 +115,12 @@
 
         If clickItalic = 1 Then
 
+            fontGlobalStyle = FontStyle.Regular
             Dim fontNormal As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
             txtField.SelectionFont = fontNormal
             clickItalic = 0
-            fontGlobalStyle = FontStyle.Regular
+
+            cmdItalic.BackgroundImage = My.Resources.fontItalic
 
         Else
 
@@ -79,28 +129,11 @@
             clickItalic = 1
             fontGlobalStyle = FontStyle.Italic
 
+            cmdItalic.BackgroundImage = My.Resources.fontItalicClicked
+
         End If
 
     End Sub
-
-    Private Sub BoldToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoldToolStripMenuItem.Click
-
-        cmdBold.PerformClick()
-
-    End Sub
-
-    Private Sub UnderlineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnderlineToolStripMenuItem.Click
-
-        cmdUnderline.PerformClick()
-
-    End Sub
-
-    Private Sub ItalicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ItalicToolStripMenuItem.Click
-
-        cmdItalic.PerformClick()
-
-    End Sub
-
     Private Sub TimesNewRomanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TimesNewRomanToolStripMenuItem.Click
 
         If clickFontTimesNewRoman = 1 Then
@@ -118,15 +151,6 @@
             fontGlobalFont = "Times New Roman"
 
         End If
-
-    End Sub
-
-    Private Sub cmbFontSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFontSize.SelectedIndexChanged
-
-        fontGlobalSize = cmbFontSize.Text
-
-        Dim txtFontSize As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
-        txtField.SelectionFont = txtFontSize
 
     End Sub
 
@@ -168,6 +192,45 @@
             fontGlobalFont = "Calibri"
 
         End If
+
+    End Sub
+
+    Private Sub cmbFontSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFontSize.SelectedIndexChanged
+
+        fontGlobalSize = cmbFontSize.Text
+
+        Dim txtFontSize As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
+        txtField.SelectionFont = txtFontSize
+
+    End Sub
+
+    Private Sub BoldToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoldToolStripMenuItem.Click
+
+        cmdBold.PerformClick()
+
+    End Sub
+
+    Private Sub UnderlineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnderlineToolStripMenuItem.Click
+
+        cmdUnderline.PerformClick()
+
+    End Sub
+
+    Private Sub ItalicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ItalicToolStripMenuItem.Click
+
+        cmdItalic.PerformClick()
+
+    End Sub
+
+    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+
+        Application.Exit()
+
+    End Sub
+
+    Private Sub txtField_TextChanged(sender As Object, e As EventArgs) Handles txtField.TextChanged
+
+        statsWordCount.Text = "Word Count: " & txtField.Text.Length
 
     End Sub
 
@@ -216,6 +279,9 @@
             And (openFileDialog.FileName.Length > 0) Then
 
             txtField.LoadFile(openFileDialog.FileName)
+
+            fileGlobalName = openFileDialog.FileName
+            Me.Text = "Word Processor | " & fileGlobalName
 
         End If
 
