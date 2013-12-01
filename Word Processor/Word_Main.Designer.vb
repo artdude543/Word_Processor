@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Main_Processor
+Partial Class Word_Main
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,23 +22,21 @@ Partial Class Main_Processor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main_Processor))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Word_Main))
         Me.menuHome = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdOpen = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdSave = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.FontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FontToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TimesNewRomanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ArialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CalibriToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StyleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BoldToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UnderlineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ItalicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdStyleBold = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdStyleUnderline = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdStyleItalic = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusHome = New System.Windows.Forms.StatusStrip()
         Me.statsWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.txtField = New System.Windows.Forms.RichTextBox()
@@ -48,6 +46,8 @@ Partial Class Main_Processor
         Me.cmdItalic = New System.Windows.Forms.ToolStripButton()
         Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
         Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
+        Me.lblFont = New System.Windows.Forms.ToolStripLabel()
+        Me.cmbFontSelection = New System.Windows.Forms.ToolStripComboBox()
         Me.menuHome.SuspendLayout()
         Me.statusHome.SuspendLayout()
         Me.toolStripHome.SuspendLayout()
@@ -63,98 +63,85 @@ Partial Class Main_Processor
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdOpen, Me.cmdPrint, Me.cmdSave, Me.cmdClose})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
-        'OpenToolStripMenuItem
+        'cmdOpen
         '
-        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
-        Me.OpenToolStripMenuItem.Text = "Open"
+        Me.cmdOpen.Name = "cmdOpen"
+        Me.cmdOpen.Size = New System.Drawing.Size(152, 22)
+        Me.cmdOpen.Text = "Open"
         '
-        'SaveToolStripMenuItem
+        'cmdPrint
         '
-        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
-        Me.SaveToolStripMenuItem.Text = "Save"
+        Me.cmdPrint.Name = "cmdPrint"
+        Me.cmdPrint.Size = New System.Drawing.Size(152, 22)
+        Me.cmdPrint.Text = "Print"
         '
-        'CloseToolStripMenuItem
+        'cmdSave
         '
-        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
-        Me.CloseToolStripMenuItem.Text = "Close"
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(152, 22)
+        Me.cmdSave.Text = "Save"
+        '
+        'cmdClose
+        '
+        Me.cmdClose.Name = "cmdClose"
+        Me.cmdClose.Size = New System.Drawing.Size(152, 22)
+        Me.cmdClose.Text = "Close"
         '
         'FontToolStripMenuItem
         '
-        Me.FontToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FontToolStripMenuItem1, Me.StyleToolStripMenuItem})
+        Me.FontToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StyleToolStripMenuItem})
         Me.FontToolStripMenuItem.Name = "FontToolStripMenuItem"
         Me.FontToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.FontToolStripMenuItem.Text = "Font"
         '
-        'FontToolStripMenuItem1
-        '
-        Me.FontToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TimesNewRomanToolStripMenuItem, Me.ArialToolStripMenuItem, Me.CalibriToolStripMenuItem})
-        Me.FontToolStripMenuItem1.Name = "FontToolStripMenuItem1"
-        Me.FontToolStripMenuItem1.Size = New System.Drawing.Size(99, 22)
-        Me.FontToolStripMenuItem1.Text = "Font"
-        '
-        'TimesNewRomanToolStripMenuItem
-        '
-        Me.TimesNewRomanToolStripMenuItem.Name = "TimesNewRomanToolStripMenuItem"
-        Me.TimesNewRomanToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.TimesNewRomanToolStripMenuItem.Text = "Times New Roman"
-        '
-        'ArialToolStripMenuItem
-        '
-        Me.ArialToolStripMenuItem.Name = "ArialToolStripMenuItem"
-        Me.ArialToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.ArialToolStripMenuItem.Text = "Arial"
-        '
-        'CalibriToolStripMenuItem
-        '
-        Me.CalibriToolStripMenuItem.Name = "CalibriToolStripMenuItem"
-        Me.CalibriToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.CalibriToolStripMenuItem.Text = "Calibri"
-        '
         'StyleToolStripMenuItem
         '
-        Me.StyleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoldToolStripMenuItem, Me.UnderlineToolStripMenuItem, Me.ItalicToolStripMenuItem})
+        Me.StyleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdStyleBold, Me.cmdStyleUnderline, Me.cmdStyleItalic})
         Me.StyleToolStripMenuItem.Name = "StyleToolStripMenuItem"
-        Me.StyleToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
+        Me.StyleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.StyleToolStripMenuItem.Text = "Style"
         '
-        'BoldToolStripMenuItem
+        'cmdStyleBold
         '
-        Me.BoldToolStripMenuItem.Name = "BoldToolStripMenuItem"
-        Me.BoldToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
-        Me.BoldToolStripMenuItem.Text = "Bold"
+        Me.cmdStyleBold.Name = "cmdStyleBold"
+        Me.cmdStyleBold.Size = New System.Drawing.Size(152, 22)
+        Me.cmdStyleBold.Text = "Bold"
         '
-        'UnderlineToolStripMenuItem
+        'cmdStyleUnderline
         '
-        Me.UnderlineToolStripMenuItem.Name = "UnderlineToolStripMenuItem"
-        Me.UnderlineToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
-        Me.UnderlineToolStripMenuItem.Text = "Underline"
+        Me.cmdStyleUnderline.Name = "cmdStyleUnderline"
+        Me.cmdStyleUnderline.Size = New System.Drawing.Size(152, 22)
+        Me.cmdStyleUnderline.Text = "Underline"
         '
-        'ItalicToolStripMenuItem
+        'cmdStyleItalic
         '
-        Me.ItalicToolStripMenuItem.Name = "ItalicToolStripMenuItem"
-        Me.ItalicToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
-        Me.ItalicToolStripMenuItem.Text = "Italic"
+        Me.cmdStyleItalic.Name = "cmdStyleItalic"
+        Me.cmdStyleItalic.Size = New System.Drawing.Size(152, 22)
+        Me.cmdStyleItalic.Text = "Italic"
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdHelp, Me.cmdAbout})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
-        'AboutToolStripMenuItem
+        'cmdHelp
         '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.AboutToolStripMenuItem.Text = "About"
+        Me.cmdHelp.Name = "cmdHelp"
+        Me.cmdHelp.Size = New System.Drawing.Size(107, 22)
+        Me.cmdHelp.Text = "Help"
+        '
+        'cmdAbout
+        '
+        Me.cmdAbout.Name = "cmdAbout"
+        Me.cmdAbout.Size = New System.Drawing.Size(107, 22)
+        Me.cmdAbout.Text = "About"
         '
         'statusHome
         '
@@ -185,7 +172,7 @@ Partial Class Main_Processor
         '
         'toolStripHome
         '
-        Me.toolStripHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdBold, Me.cmdUnderline, Me.cmdItalic, Me.lblFontSize, Me.cmbFontSize})
+        Me.toolStripHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdBold, Me.cmdUnderline, Me.cmdItalic, Me.lblFontSize, Me.cmbFontSize, Me.lblFont, Me.cmbFontSelection})
         Me.toolStripHome.Location = New System.Drawing.Point(0, 24)
         Me.toolStripHome.Name = "toolStripHome"
         Me.toolStripHome.Size = New System.Drawing.Size(742, 25)
@@ -232,7 +219,19 @@ Partial Class Main_Processor
         Me.cmbFontSize.Name = "cmbFontSize"
         Me.cmbFontSize.Size = New System.Drawing.Size(121, 25)
         '
-        'Main_Processor
+        'lblFont
+        '
+        Me.lblFont.Name = "lblFont"
+        Me.lblFont.Size = New System.Drawing.Size(34, 22)
+        Me.lblFont.Text = "Font:"
+        '
+        'cmbFontSelection
+        '
+        Me.cmbFontSelection.Items.AddRange(New Object() {"Times New Roman", "Arial", "Calibri"})
+        Me.cmbFontSelection.Name = "cmbFontSelection"
+        Me.cmbFontSelection.Size = New System.Drawing.Size(121, 25)
+        '
+        'Word_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -241,8 +240,9 @@ Partial Class Main_Processor
         Me.Controls.Add(Me.txtField)
         Me.Controls.Add(Me.statusHome)
         Me.Controls.Add(Me.menuHome)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menuHome
-        Me.Name = "Main_Processor"
+        Me.Name = "Word_Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Word Processor | Home"
         Me.menuHome.ResumeLayout(False)
@@ -260,25 +260,25 @@ Partial Class Main_Processor
     Friend WithEvents statsWordCount As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents txtField As System.Windows.Forms.RichTextBox
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdClose As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents toolStripHome As System.Windows.Forms.ToolStrip
     Friend WithEvents cmdBold As System.Windows.Forms.ToolStripButton
     Friend WithEvents cmdUnderline As System.Windows.Forms.ToolStripButton
     Friend WithEvents cmdItalic As System.Windows.Forms.ToolStripButton
-    Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdSave As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents StyleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents BoldToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents UnderlineToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ItalicToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents FontToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TimesNewRomanToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdStyleBold As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdStyleUnderline As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdStyleItalic As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblFontSize As System.Windows.Forms.ToolStripLabel
     Friend WithEvents cmbFontSize As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents ArialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CalibriToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OpenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdOpen As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdAbout As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdPrint As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lblFont As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents cmbFontSelection As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents cmdHelp As System.Windows.Forms.ToolStripMenuItem
 
 End Class

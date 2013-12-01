@@ -1,10 +1,10 @@
 ﻿Imports System.Net
 
-Public Class Main_Load
+Public Class Word_Loading
 
     Private Sub cmdCreateNew_Click(sender As Object, e As EventArgs) Handles cmdCreateNew.Click
 
-        Main_Processor.Show()
+        Word_Main.Show()
         Me.Hide()
 
     End Sub
@@ -28,7 +28,7 @@ Public Class Main_Load
 
             My.Settings.Open_FileName = openFileDialog.FileName
 
-            Main_Processor.Show()
+            Word_Main.Show()
             Me.Hide()
 
         End If
@@ -38,21 +38,21 @@ Public Class Main_Load
     Private Sub cmdDownload_Click(sender As Object, e As EventArgs) Handles cmdDownload.Click
 
         Dim downloadURL As String
-        Dim tempSave = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\temp.rtf"
+        Dim tempSave = My.Computer.FileSystem.SpecialDirectories.Temp & "\temp.rtf"
+
 
         My.Settings.Download_Enable = True
 
         downloadURL = InputBox("Please Enter The URL For A Text File (.rtf)")
 
         Dim webClient As New WebClient
-
         webClient.DownloadFile(downloadURL, tempSave)
 
         If (System.IO.File.Exists(tempSave)) Then
 
             My.Settings.Download_Temp = tempSave
 
-            Main_Processor.Show()
+            Word_Main.Show()
             Me.Hide()
 
         Else

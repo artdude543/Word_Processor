@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property aboutWord() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("aboutWord", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property createNew() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("createNew", resourceCulture)
@@ -147,6 +157,16 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("fontUnderlineClicked", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property wordIcon() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("wordIcon", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
     End Module

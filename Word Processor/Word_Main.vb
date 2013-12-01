@@ -1,4 +1,4 @@
-﻿Public Class Main_Processor
+﻿Public Class Word_Main
 
     Dim clickBold As Integer = 0
     Dim clickUnderline As Integer = 0
@@ -40,7 +40,18 @@
 
     Private Sub Main_Processor_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
-        Application.Exit()
+        Dim tempFile As String = My.Computer.FileSystem.SpecialDirectories.Temp & "\temp.rtf"
+
+        If (My.Computer.FileSystem.FileExists(tempFile)) Then
+
+            My.Computer.FileSystem.DeleteFile(tempFile)
+            Application.Exit()
+
+        Else
+
+            Application.Exit()
+
+        End If
 
     End Sub
 
@@ -57,7 +68,7 @@
 
         ElseIf (e.KeyCode = Keys.I AndAlso e.Modifiers = Keys.Control) Then
 
-            cmdUnderline.PerformClick()
+            cmdItalic.PerformClick()
 
         End If
 
@@ -134,62 +145,26 @@
         End If
 
     End Sub
-    Private Sub TimesNewRomanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TimesNewRomanToolStripMenuItem.Click
 
-        If clickFontTimesNewRoman = 1 Then
+    Private Sub cmbFontSelection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFontSelection.SelectedIndexChanged
 
-            fontGlobalFont = "Microsoft Sans Serif"
-            Dim fontNormal As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
-            txtField.SelectionFont = fontNormal
-            clickFontTimesNewRoman = 0
+        If cmbFontSelection.SelectedItem = "Times New Roman" Then
 
-        Else
-
+            fontGlobalFont = "Times New Roman"
             Dim fontNTR As New Font("Times New Roman", fontGlobalSize, fontGlobalStyle)
             txtField.SelectionFont = fontNTR
-            clickFontTimesNewRoman = 1
-            fontGlobalFont = "Times New Roman"
 
-        End If
+        ElseIf cmbFontSelection.SelectedItem = "Arial" Then
 
-    End Sub
-
-    Private Sub ArialToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArialToolStripMenuItem.Click
-
-        If clickFontArial = 1 Then
-
-            fontGlobalFont = "Microsoft Sans Serif"
-            Dim fontNormal As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
-            txtField.SelectionFont = fontNormal
-            clickFontTimesNewRoman = 0
-
-        Else
-
+            fontGlobalFont = "Arial"
             Dim fontArial As New Font("Arial", fontGlobalSize, fontGlobalStyle)
             txtField.SelectionFont = fontArial
-            clickFontArial = 1
-            fontGlobalFont = "Arial"
 
-        End If
+        ElseIf cmbFontSelection.SelectedItem = "Calibri" Then
 
-
-    End Sub
-
-    Private Sub CalibriToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalibriToolStripMenuItem.Click
-
-        If clickFontCalibri = 1 Then
-
-            fontGlobalFont = "Microsoft Sans Serif"
-            Dim fontNormal As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
-            txtField.SelectionFont = fontNormal
-            clickFontTimesNewRoman = 0
-
-        Else
-
-            Dim fontArial As New Font("Calibri", fontGlobalSize, fontGlobalStyle)
-            txtField.SelectionFont = fontArial
-            clickFontArial = 1
             fontGlobalFont = "Calibri"
+            Dim fontCalibri As New Font("Calibri", fontGlobalSize, fontGlobalStyle)
+            txtField.SelectionFont = fontCalibri
 
         End If
 
@@ -204,27 +179,39 @@
 
     End Sub
 
-    Private Sub BoldToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoldToolStripMenuItem.Click
+    Private Sub cmdStyleBold_Click(sender As Object, e As EventArgs) Handles cmdStyleBold.Click
 
         cmdBold.PerformClick()
 
     End Sub
 
-    Private Sub UnderlineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnderlineToolStripMenuItem.Click
+    Private Sub cmdStyleUnderline_Click(sender As Object, e As EventArgs) Handles cmdStyleUnderline.Click
 
         cmdUnderline.PerformClick()
 
     End Sub
 
-    Private Sub ItalicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ItalicToolStripMenuItem.Click
+    Private Sub cmdStyleItalic_Click(sender As Object, e As EventArgs) Handles cmdStyleItalic.Click
 
         cmdItalic.PerformClick()
 
     End Sub
 
-    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+    Private Sub cmdClose_Click(sender As Object, e As EventArgs) Handles cmdClose.Click
 
         Application.Exit()
+
+    End Sub
+
+    Private Sub cmdAbout_Click(sender As Object, e As EventArgs) Handles cmdAbout.Click
+
+        Word_About.ShowDialog()
+
+    End Sub
+
+    Private Sub cmdPrint_Click(sender As Object, e As EventArgs) Handles cmdPrint.Click
+
+        MsgBox("Coming Soon!")
 
     End Sub
 
@@ -234,7 +221,7 @@
 
     End Sub
 
-    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
 
         Dim saveFileDialog As SaveFileDialog = New System.Windows.Forms.SaveFileDialog
         Dim saveFileName As String = ""
@@ -263,7 +250,7 @@
 
     End Sub
 
-    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+    Private Sub cmdOpen_Click(sender As Object, e As EventArgs) Handles cmdOpen.Click
 
         Dim openFileDialog As OpenFileDialog = New System.Windows.Forms.OpenFileDialog
 
@@ -284,6 +271,12 @@
             Me.Text = "Word Processor | " & fileGlobalName
 
         End If
+
+    End Sub
+
+    Private Sub cmdHelp_Click(sender As Object, e As EventArgs) Handles cmdHelp.Click
+
+
 
     End Sub
 
