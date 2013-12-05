@@ -4,6 +4,7 @@ Imports ExtendedRichTextBox.RichTextBoxPrintCtrl
 Public Class Word_Main
 
 #Region "Declarations"
+
     Dim clickBold As Integer = 0
     Dim clickUnderline As Integer = 0
     Dim clickItalic As Integer = 0
@@ -16,6 +17,8 @@ Public Class Word_Main
     Dim fileCheckPrint As Integer
 
 #End Region
+
+#Region "Form Events"
 
     Private Sub Main_Processor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -49,6 +52,51 @@ Public Class Word_Main
 
     End Sub
 
+    Private Sub cmdClose_Click(sender As Object, e As EventArgs) Handles cmdClose.Click
+
+        ' Closes the application.
+        Call applicationClose()
+
+    End Sub
+
+    Private Sub applicationClose()
+
+        If txtField.Modified Then
+
+            Dim userPrompt As Integer
+            userPrompt = MessageBox.Show("The current document has not been saved, would you like to continue without saving?", "Unsaved Document", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If userPrompt = Windows.Forms.DialogResult.No Then
+
+                Exit Sub
+
+            Else
+
+                Application.Exit()
+
+            End If
+
+        Else
+
+            Application.Exit()
+
+        End If
+
+    End Sub
+
+    Private Sub cmdAbout_Click(sender As Object, e As EventArgs) Handles cmdAbout.Click
+
+        ' Shows the "About" form as a dialog box.
+        Word_About.ShowDialog()
+
+    End Sub
+
+    Private Sub cmdHelp_Click(sender As Object, e As EventArgs) Handles cmdHelp.Click
+
+        ' Help
+
+    End Sub
+
     Private Sub txtField_KeyDown(sender As Object, e As KeyEventArgs) Handles txtField.KeyDown
 
         ' If the application detects "CTRL + B" being pressed it performs a virtual click to load the function.
@@ -70,6 +118,59 @@ Public Class Word_Main
         End If
 
     End Sub
+
+#End Region
+
+#Region "Document Events"
+
+    Private Sub cmdNew_Click(sender As Object, e As EventArgs) Handles cmdNew.Click
+
+        If txtField.Modified Then
+
+            Dim userPrompt As Integer
+            userPrompt = MessageBox.Show("The Current Docuement Has Not Been Saved, Do You Wish To Contiune Without Saving?", "Unsaved Document!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If userPrompt = Windows.Forms.DialogResult.Yes Then
+
+                txtField.Clear()
+
+            Else
+
+                Exit Sub
+
+            End If
+
+        Else
+
+            txtField.Clear()
+
+        End If
+
+        fileGlobalName = ""
+        Me.Text = "ThermoCraft Word - New Document"
+
+    End Sub
+
+    Private Sub cmbFontSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFontSize.SelectedIndexChanged
+
+        ' This updates the font size, based on the selected index then it updates all the global variables based on this.
+        fontGlobalSize = cmbFontSize.Text
+
+        Dim txtFontSize As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
+        txtField.SelectionFont = txtFontSize
+
+    End Sub
+
+    Private Sub txtField_TextChanged(sender As Object, e As EventArgs) Handles txtField.TextChanged
+
+        ' Updates the word count based on the lenght of text in the "txtField" RichTextBox.
+        statsWordCount.Text = "Word Count: " & txtField.Text.Length
+
+    End Sub
+
+#End Region
+
+#Region "Font Events"
 
     Private Sub cmdBold_Click(sender As Object, e As EventArgs) Handles cmdBold.Click
 
@@ -149,6 +250,27 @@ Public Class Word_Main
 
     End Sub
 
+    Private Sub cmdStyleBold_Click(sender As Object, e As EventArgs) Handles cmdStyleBold.Click
+
+        ' Performs a virtual click.
+        cmdBold.PerformClick()
+
+    End Sub
+
+    Private Sub cmdStyleUnderline_Click(sender As Object, e As EventArgs) Handles cmdStyleUnderline.Click
+
+        ' Performs a virtual click.
+        cmdUnderline.PerformClick()
+
+    End Sub
+
+    Private Sub cmdStyleItalic_Click(sender As Object, e As EventArgs) Handles cmdStyleItalic.Click
+
+        ' Performs a virtual click.
+        cmdItalic.PerformClick()
+
+    End Sub
+
     Private Sub cmbFontSelection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFontSelection.SelectedIndexChanged
 
         ' This function changes the font based on the user input and what has been inputed. Once the font has been selected, 
@@ -175,80 +297,9 @@ Public Class Word_Main
 
     End Sub
 
-    Private Sub cmbFontSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFontSize.SelectedIndexChanged
+#End Region
 
-        ' This updates the font size, based on the selected index then it updates all the global variables based on this.
-        fontGlobalSize = cmbFontSize.Text
-
-        Dim txtFontSize As New Font(fontGlobalFont, fontGlobalSize, fontGlobalStyle)
-        txtField.SelectionFont = txtFontSize
-
-    End Sub
-
-    Private Sub cmdStyleBold_Click(sender As Object, e As EventArgs) Handles cmdStyleBold.Click
-
-        ' Performs a virtual click.
-        cmdBold.PerformClick()
-
-    End Sub
-
-    Private Sub cmdStyleUnderline_Click(sender As Object, e As EventArgs) Handles cmdStyleUnderline.Click
-
-        ' Performs a virtual click.
-        cmdUnderline.PerformClick()
-
-    End Sub
-
-    Private Sub cmdStyleItalic_Click(sender As Object, e As EventArgs) Handles cmdStyleItalic.Click
-
-        ' Performs a virtual click.
-        cmdItalic.PerformClick()
-
-    End Sub
-
-    Private Sub cmdClose_Click(sender As Object, e As EventArgs) Handles cmdClose.Click
-
-        ' Closes the application.
-        Call applicationClose()
-
-    End Sub
-
-    Private Sub cmdAbout_Click(sender As Object, e As EventArgs) Handles cmdAbout.Click
-
-        ' Shows the "About" form as a dialog box.
-        Word_About.ShowDialog()
-
-    End Sub
-
-    Private Sub cmdPrint_Click(sender As Object, e As EventArgs) Handles cmdPrint.Click
-
-        Dim printFileDialog As PrintDialog = New System.Windows.Forms.PrintDialog
-
-        printFileDialog.Document = filePrintDocument
-
-        If printFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
-
-            filePrintDocument.Print()
-
-        End If
-
-    End Sub
-
-    Private Sub cmdPrintPreview_Click(sender As Object, e As EventArgs)
-
-        Dim printPreviewDialog As PrintPreviewDialog = New System.Windows.Forms.PrintPreviewDialog
-
-        printPreviewDialog.Document = filePrintDocument
-        printPreviewDialog.ShowDialog()
-
-    End Sub
-
-    Private Sub txtField_TextChanged(sender As Object, e As EventArgs) Handles txtField.TextChanged
-
-        ' Updates the word count based on the lenght of text in the "txtField" RichTextBox.
-        statsWordCount.Text = "Word Count: " & txtField.Text.Length
-
-    End Sub
+#Region "Save/Open Events"
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
 
@@ -324,6 +375,12 @@ Public Class Word_Main
 
     End Sub
 
+    Private Sub cmdSaveTS_Click(sender As Object, e As EventArgs) Handles cmdSaveTS.Click
+
+        cmdSave.PerformClick()
+
+    End Sub
+
     Private Sub cmdOpen_Click(sender As Object, e As EventArgs) Handles cmdOpen.Click
 
         Dim openFileDialog As OpenFileDialog = New System.Windows.Forms.OpenFileDialog
@@ -363,72 +420,18 @@ Public Class Word_Main
 
     End Sub
 
-    Private Sub cmdHelp_Click(sender As Object, e As EventArgs) Handles cmdHelp.Click
-
-        ' Help
-
-    End Sub
-
-    Private Sub cmdSaveTS_Click(sender As Object, e As EventArgs) Handles cmdSaveTS.Click
-
-        cmdSave.PerformClick()
-
-    End Sub
-
-    Private Sub cmdNew_Click(sender As Object, e As EventArgs) Handles cmdNew.Click
-
-        If txtField.Modified Then
-
-            Dim userPrompt As Integer
-            userPrompt = MessageBox.Show("The Current Docuement Has Not Been Saved, Do You Wish To Contiune Without Saving?", "Unsaved Document!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-            If userPrompt = Windows.Forms.DialogResult.Yes Then
-
-                txtField.Clear()
-
-            Else
-
-                Exit Sub
-
-            End If
-
-        Else
-
-            txtField.Clear()
-
-        End If
-
-        fileGlobalName = ""
-        Me.Text = "ThermoCraft Word - New Document"
-
-    End Sub
-
-    Private Sub applicationClose()
-
-        If txtField.Modified Then
-
-            Dim userPrompt As Integer
-            userPrompt = MessageBox.Show("The current document has not been saved, would you like to continue without saving?", "Unsaved Document", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-            If userPrompt = Windows.Forms.DialogResult.No Then
-
-                Exit Sub
-
-            Else
-
-                Application.Exit()
-
-            End If
-
-        Else
-
-            Application.Exit()
-
-        End If
-
-    End Sub
+#End Region
 
 #Region "Printing"
+
+    Private Sub cmdPrintPreview_Click(sender As Object, e As EventArgs)
+
+        Dim printPreviewDialog As PrintPreviewDialog = New System.Windows.Forms.PrintPreviewDialog
+
+        printPreviewDialog.Document = filePrintDocument
+        printPreviewDialog.ShowDialog()
+
+    End Sub
 
     Private Sub filePrintDocument_BeginPrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles filePrintDocument.BeginPrint
 
@@ -454,6 +457,20 @@ Public Class Word_Main
         Else
 
             e.HasMorePages = False
+
+        End If
+
+    End Sub
+
+    Private Sub cmdPrint_Click(sender As Object, e As EventArgs) Handles cmdPrint.Click
+
+        Dim printFileDialog As PrintDialog = New System.Windows.Forms.PrintDialog
+
+        printFileDialog.Document = filePrintDocument
+
+        If printFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+            filePrintDocument.Print()
 
         End If
 

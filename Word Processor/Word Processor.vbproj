@@ -78,7 +78,8 @@
     <ManifestCertificateThumbprint>E352664BD76A7D9EE564C0AF99B17E8FE87E6F46</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Word Processor_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
