@@ -28,9 +28,14 @@ Partial Class Word_Main
         Me.cmdNew = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdOpen = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdPageSetup = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdPrintPreview = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdSave = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdSaveAs = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdClose = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdUndo = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdRedo = New System.Windows.Forms.ToolStripMenuItem()
         Me.FontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StyleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdStyleBold = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,12 +54,22 @@ Partial Class Word_Main
         Me.cmdBold = New System.Windows.Forms.ToolStripButton()
         Me.cmdUnderline = New System.Windows.Forms.ToolStripButton()
         Me.cmdItalic = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.cmdLeft = New System.Windows.Forms.ToolStripButton()
+        Me.cmdMiddle = New System.Windows.Forms.ToolStripButton()
+        Me.cmdRight = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.cmdBulletAdd = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.lblFontSize = New System.Windows.Forms.ToolStripLabel()
         Me.cmbFontSize = New System.Windows.Forms.ToolStripComboBox()
         Me.lblFont = New System.Windows.Forms.ToolStripLabel()
         Me.cmbFontSelection = New System.Windows.Forms.ToolStripComboBox()
         Me.filePrintDocument = New System.Drawing.Printing.PrintDocument()
-        Me.cmdPrintPreview = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InsertToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdInsertImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuHome.SuspendLayout()
         Me.statusHome.SuspendLayout()
         Me.toolStripHome.SuspendLayout()
@@ -62,7 +77,7 @@ Partial Class Word_Main
         '
         'menuHome
         '
-        Me.menuHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.FontToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.menuHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.InsertToolStripMenuItem, Me.FontToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.menuHome.Location = New System.Drawing.Point(0, 0)
         Me.menuHome.Name = "menuHome"
         Me.menuHome.Size = New System.Drawing.Size(742, 24)
@@ -70,7 +85,7 @@ Partial Class Word_Main
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNew, Me.cmdOpen, Me.cmdPrint, Me.cmdPrintPreview, Me.cmdSave, Me.cmdSaveAs, Me.cmdClose})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNew, Me.cmdOpen, Me.cmdPrint, Me.cmdPageSetup, Me.cmdPrintPreview, Me.cmdSave, Me.cmdSaveAs, Me.cmdClose})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -93,6 +108,18 @@ Partial Class Word_Main
         Me.cmdPrint.Size = New System.Drawing.Size(152, 22)
         Me.cmdPrint.Text = "Print"
         '
+        'cmdPageSetup
+        '
+        Me.cmdPageSetup.Name = "cmdPageSetup"
+        Me.cmdPageSetup.Size = New System.Drawing.Size(152, 22)
+        Me.cmdPageSetup.Text = "Page Setup"
+        '
+        'cmdPrintPreview
+        '
+        Me.cmdPrintPreview.Name = "cmdPrintPreview"
+        Me.cmdPrintPreview.Size = New System.Drawing.Size(152, 22)
+        Me.cmdPrintPreview.Text = "Print Preview"
+        '
         'cmdSave
         '
         Me.cmdSave.Name = "cmdSave"
@@ -111,6 +138,25 @@ Partial Class Word_Main
         Me.cmdClose.Size = New System.Drawing.Size(152, 22)
         Me.cmdClose.Text = "Close"
         '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdUndo, Me.cmdRedo})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'cmdUndo
+        '
+        Me.cmdUndo.Name = "cmdUndo"
+        Me.cmdUndo.Size = New System.Drawing.Size(103, 22)
+        Me.cmdUndo.Text = "Undo"
+        '
+        'cmdRedo
+        '
+        Me.cmdRedo.Name = "cmdRedo"
+        Me.cmdRedo.Size = New System.Drawing.Size(103, 22)
+        Me.cmdRedo.Text = "Redo"
+        '
         'FontToolStripMenuItem
         '
         Me.FontToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StyleToolStripMenuItem})
@@ -122,7 +168,7 @@ Partial Class Word_Main
         '
         Me.StyleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdStyleBold, Me.cmdStyleUnderline, Me.cmdStyleItalic})
         Me.StyleToolStripMenuItem.Name = "StyleToolStripMenuItem"
-        Me.StyleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StyleToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.StyleToolStripMenuItem.Text = "Style"
         '
         'cmdStyleBold
@@ -191,7 +237,7 @@ Partial Class Word_Main
         '
         'toolStripHome
         '
-        Me.toolStripHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNewTS, Me.cmdSaveTS, Me.ToolStripSeparator1, Me.cmdBold, Me.cmdUnderline, Me.cmdItalic, Me.lblFontSize, Me.cmbFontSize, Me.lblFont, Me.cmbFontSelection})
+        Me.toolStripHome.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNewTS, Me.cmdSaveTS, Me.ToolStripSeparator1, Me.cmdBold, Me.cmdUnderline, Me.cmdItalic, Me.ToolStripSeparator2, Me.cmdLeft, Me.cmdMiddle, Me.cmdRight, Me.ToolStripSeparator3, Me.cmdBulletAdd, Me.ToolStripButton1, Me.ToolStripSeparator4, Me.lblFontSize, Me.cmbFontSize, Me.lblFont, Me.cmbFontSelection})
         Me.toolStripHome.Location = New System.Drawing.Point(0, 24)
         Me.toolStripHome.Name = "toolStripHome"
         Me.toolStripHome.Size = New System.Drawing.Size(742, 25)
@@ -249,6 +295,66 @@ Partial Class Word_Main
         Me.cmdItalic.Size = New System.Drawing.Size(23, 22)
         Me.cmdItalic.Text = "Italic"
         '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'cmdLeft
+        '
+        Me.cmdLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdLeft.Image = CType(resources.GetObject("cmdLeft.Image"), System.Drawing.Image)
+        Me.cmdLeft.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdLeft.Name = "cmdLeft"
+        Me.cmdLeft.Size = New System.Drawing.Size(23, 22)
+        Me.cmdLeft.Text = "ToolStripButton1"
+        '
+        'cmdMiddle
+        '
+        Me.cmdMiddle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdMiddle.Image = CType(resources.GetObject("cmdMiddle.Image"), System.Drawing.Image)
+        Me.cmdMiddle.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdMiddle.Name = "cmdMiddle"
+        Me.cmdMiddle.Size = New System.Drawing.Size(23, 22)
+        Me.cmdMiddle.Text = "ToolStripButton1"
+        '
+        'cmdRight
+        '
+        Me.cmdRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdRight.Image = CType(resources.GetObject("cmdRight.Image"), System.Drawing.Image)
+        Me.cmdRight.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdRight.Name = "cmdRight"
+        Me.cmdRight.Size = New System.Drawing.Size(23, 22)
+        Me.cmdRight.Text = "ToolStripButton1"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'cmdBulletAdd
+        '
+        Me.cmdBulletAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdBulletAdd.Image = CType(resources.GetObject("cmdBulletAdd.Image"), System.Drawing.Image)
+        Me.cmdBulletAdd.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdBulletAdd.Name = "cmdBulletAdd"
+        Me.cmdBulletAdd.Size = New System.Drawing.Size(23, 22)
+        Me.cmdBulletAdd.Text = "ToolStripButton1"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "cmdBulletRemove"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
         'lblFontSize
         '
         Me.lblFontSize.Name = "lblFontSize"
@@ -276,11 +382,25 @@ Partial Class Word_Main
         'filePrintDocument
         '
         '
-        'cmdPrintPreview
+        'InsertToolStripMenuItem
         '
-        Me.cmdPrintPreview.Name = "cmdPrintPreview"
-        Me.cmdPrintPreview.Size = New System.Drawing.Size(152, 22)
-        Me.cmdPrintPreview.Text = "Print Preview"
+        Me.InsertToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImageToolStripMenuItem})
+        Me.InsertToolStripMenuItem.Name = "InsertToolStripMenuItem"
+        Me.InsertToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.InsertToolStripMenuItem.Text = "Insert"
+        '
+        'ImageToolStripMenuItem
+        '
+        Me.ImageToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdInsertImage})
+        Me.ImageToolStripMenuItem.Name = "ImageToolStripMenuItem"
+        Me.ImageToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ImageToolStripMenuItem.Text = "Media"
+        '
+        'cmdInsertImage
+        '
+        Me.cmdInsertImage.Name = "cmdInsertImage"
+        Me.cmdInsertImage.Size = New System.Drawing.Size(152, 22)
+        Me.cmdInsertImage.Text = "Image"
         '
         'Word_Main
         '
@@ -338,5 +458,20 @@ Partial Class Word_Main
     Friend WithEvents filePrintDocument As System.Drawing.Printing.PrintDocument
     Friend WithEvents txtField As ExtendedRichTextBox.RichTextBoxPrintCtrl
     Friend WithEvents cmdPrintPreview As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdUndo As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdRedo As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents cmdLeft As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cmdMiddle As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cmdRight As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents cmdBulletAdd As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents cmdPageSetup As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents InsertToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdInsertImage As System.Windows.Forms.ToolStripMenuItem
 
 End Class

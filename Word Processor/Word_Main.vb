@@ -299,6 +299,41 @@ Public Class Word_Main
 
 #End Region
 
+#Region "Alignments/Formats"
+
+    Private Sub cmdLeft_Click(sender As Object, e As EventArgs) Handles cmdLeft.Click
+
+        txtField.SelectionAlignment = HorizontalAlignment.Left
+
+    End Sub
+
+    Private Sub cmdMiddle_Click(sender As Object, e As EventArgs) Handles cmdMiddle.Click
+
+        txtField.SelectionAlignment = HorizontalAlignment.Center
+
+    End Sub
+
+    Private Sub cmdRight_Click(sender As Object, e As EventArgs) Handles cmdRight.Click
+
+        txtField.SelectionAlignment = HorizontalAlignment.Right
+
+    End Sub
+
+    Private Sub cmdBulletAdd_Click(sender As Object, e As EventArgs) Handles cmdBulletAdd.Click
+
+        txtField.BulletIndent = 10
+        txtField.SelectionBullet = True
+
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+
+        txtField.SelectionBullet = False
+
+    End Sub
+
+#End Region
+
 #Region "Save/Open Events"
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -422,7 +457,72 @@ Public Class Word_Main
 
 #End Region
 
+#Region "Undo/Redo Events"
+
+    Private Sub cmdUndo_Click(sender As Object, e As EventArgs) Handles cmdUndo.Click
+
+        If txtField.CanUndo Then txtField.Undo()
+
+    End Sub
+
+    Private Sub cmdRedo_Click(sender As Object, e As EventArgs) Handles cmdRedo.Click
+
+        If txtField.CanRedo Then txtField.Redo()
+
+    End Sub
+
+#End Region
+
+#Region "Input Events"
+
+    Private Sub cmdInsertImage_Click(sender As Object, e As EventArgs) Handles cmdInsertImage.Click
+
+        Dim openFileDialog As OpenFileDialog = New System.Windows.Forms.OpenFileDialog
+
+        openFileDialog.Title = "ThermoCraft Word - Insert Image"
+        openFileDialog.DefaultExt = "rtf"
+        openFileDialog.Filter = "Bitmap Files|*.bmp|JPEG Files|*.jpg|GIF Files|*.gif|PNG Files|*.png"
+        openFileDialog.FilterIndex = 1
+        openFileDialog.ShowDialog()
+
+        If openFileDialog.FileName = "" Then Exit Sub
+
+        Try
+
+            Dim imagePath As String = openFileDialog.FileName
+            Dim img As Image
+            img = Image.FromFile(imagePath)
+            Clipboard.SetDataObject(img)
+
+            Dim dataFormat As DataFormats.Format
+            dataFormat = DataFormats.GetFormat(DataFormats.Bitmap)
+
+            If Me.txtField.CanPaste(dataFormat) Then
+
+                Me.txtField.Paste(dataFormat)
+
+            End If
+
+        Catch ex As Exception
+
+            MessageBox.Show("Unable To Insert Image Format Selected.", "ThermoCraft Word - Paste", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+
+#End Region
+
 #Region "Printing"
+
+    Private Sub cmdPageSetup_Click(sender As Object, e As EventArgs) Handles cmdPageSetup.Click
+
+        Dim pageSetup As PageSetupDialog = New System.Windows.Forms.PageSetupDialog
+
+        pageSetup.Document = filePrintDocument
+        pageSetup.ShowDialog()
+
+    End Sub
 
     Private Sub cmdPrintPreview_Click(sender As Object, e As EventArgs)
 
