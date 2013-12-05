@@ -1,5 +1,9 @@
-﻿Public Class Word_Main
+﻿Imports System.Drawing.Printing
+Imports ExtendedRichTextBox.RichTextBoxPrintCtrl
 
+Public Class Word_Main
+
+#Region "Declarations"
     Dim clickBold As Integer = 0
     Dim clickUnderline As Integer = 0
     Dim clickItalic As Integer = 0
@@ -9,34 +13,14 @@
     Dim fontGlobalStyle As FontStyle
 
     Dim fileGlobalName As String
+    Dim fileCheckPrint As Integer
+
+#End Region
 
     Private Sub Main_Processor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ' Checks to see if "Open Enable" is true, if so then it opens that file from the information in the application settings file,
-        ' this information was set from the loading form.
-        If (My.Settings.Open_Enable = True) Then
-
-            txtField.LoadFile(My.Settings.Open_FileName)
-
-            fileGlobalName = My.Settings.Open_FileName
-            Me.Text = "Word Processor | " & fileGlobalName
-
-            My.Settings.Open_Enable = False
-            My.Settings.Open_FileName = ""
-
-            ' Checks to see if "Download Enable" is true, if so then it opens that file from the information in the application settings file,
-            ' this information was set from the loading form.
-        ElseIf (My.Settings.Download_Enable = True) Then
-
-            txtField.LoadFile(My.Settings.Download_Temp)
-
-            fileGlobalName = My.Settings.Download_Temp
-            Me.Text = "Word Processor | " & fileGlobalName
-
-            My.Settings.Download_Enable = False
-            My.Settings.Download_Temp = ""
-
-        End If
+        ' Set Application Title
+        Me.Text = "ThermoCraft Word - New Document"
 
         ' Set default font.
         fontGlobalFont = "Times New Roman"
@@ -54,12 +38,12 @@
 
             ' Deletes the file and then closes the application.
             My.Computer.FileSystem.DeleteFile(tempFile)
-            Application.Exit()
+            Call applicationClose()
 
         Else
 
             ' Closes the application.
-            Application.Exit()
+            Call applicationClose()
 
         End If
 
@@ -225,7 +209,7 @@
     Private Sub cmdClose_Click(sender As Object, e As EventArgs) Handles cmdClose.Click
 
         ' Closes the application.
-        Application.Exit()
+        Call applicationClose()
 
     End Sub
 
@@ -238,8 +222,24 @@
 
     Private Sub cmdPrint_Click(sender As Object, e As EventArgs) Handles cmdPrint.Click
 
-        ' Coming Soon.
-        MsgBox("Coming Soon!")
+        Dim printFileDialog As PrintDialog = New System.Windows.Forms.PrintDialog
+
+        printFileDialog.Document = filePrintDocument
+
+        If printFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+            filePrintDocument.Print()
+
+        End If
+
+    End Sub
+
+    Private Sub cmdPrintPreview_Click(sender As Object, e As EventArgs)
+
+        Dim printPreviewDialog As PrintPreviewDialog = New System.Windows.Forms.PrintPreviewDialog
+
+        printPreviewDialog.Document = filePrintDocument
+        printPreviewDialog.ShowDialog()
 
     End Sub
 
@@ -252,56 +252,114 @@
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
 
-        ' This saves the file to the selected directory. Takes the information from the user input then "saves" the file.
-        Dim saveFileDialog As SaveFileDialog = New System.Windows.Forms.SaveFileDialog
-        Dim saveFileName As String = ""
+        If fileGlobalName = "" Then
 
-        With saveFileDialog
-            .AddExtension = True
-            .CheckPathExists = True
-            .DefaultExt = ".rtf"
-            .Filter = "Rich Text Format|*.rtf"
-            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        End With
-
-        If saveFileName = "" Then
-
-            If saveFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
-
-                saveFileName = saveFileDialog.FileName
-                txtField.SaveFile(saveFileName, RichTextBoxStreamType.RichText)
-            End If
-
-        Else
-
-            txtField.SaveFile(saveFileName, RichTextBoxStreamType.RichText)
+            cmdSaveAs_Click(Me, e)
+            Exit Sub
 
         End If
+
+        Dim strExt As String
+        strExt = System.IO.Path.GetExtension(fileGlobalName)
+        strExt = strExt.ToUpper()
+
+        Select Case strExt
+
+            Case ".RTF"
+
+                txtField.SaveFile(fileGlobalName)
+
+            Case Else
+
+                Dim txtWriter As System.IO.StreamWriter
+                txtWriter = New System.IO.StreamWriter(fileGlobalName)
+                txtWriter.Write(txtField.Text)
+                txtWriter.Close()
+                txtWriter = Nothing
+                txtField.SelectionStart = 0
+                txtField.SelectionLength = 0
+                txtField.Modified = False
+
+        End Select
+
+    End Sub
+
+    Private Sub cmdSaveAs_Click(sender As Object, e As EventArgs) Handles cmdSaveAs.Click
+
+        Dim saveFileDialog As SaveFileDialog = New System.Windows.Forms.SaveFileDialog
+
+        saveFileDialog.Title = "ThermoCraft Word - Save File"
+        saveFileDialog.DefaultExt = "rtf"
+        saveFileDialog.Filter = "Rich Text Files|*.rtf|Text Files|*.txt|HTML Files|*.htm|All Files|*.*"
+        saveFileDialog.FilterIndex = 1
+        saveFileDialog.ShowDialog()
+
+        If saveFileDialog.FileName = "" Then Exit Sub
+
+        Dim strExt As String
+        strExt = System.IO.Path.GetExtension(saveFileDialog.FileName)
+        strExt = strExt.ToUpper()
+
+        Select Case strExt
+
+            Case ".RTF"
+
+                txtField.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.RichText)
+
+            Case Else
+
+                Dim txtWriter As System.IO.StreamWriter
+                txtWriter = New System.IO.StreamWriter(saveFileDialog.FileName)
+                txtWriter.Write(txtField.Text)
+                txtWriter.Close()
+                txtWriter = Nothing
+                txtField.SelectionStart = 0
+                txtField.SelectionLength = 0
+
+        End Select
+
+        fileGlobalName = saveFileDialog.FileName
+        txtField.Modified = False
+        Me.Text = "ThermoCraft Word - " & fileGlobalName.ToString()
 
     End Sub
 
     Private Sub cmdOpen_Click(sender As Object, e As EventArgs) Handles cmdOpen.Click
 
-        ' This opens a file based on the user input and if the requirments are met to be able to open the file.
         Dim openFileDialog As OpenFileDialog = New System.Windows.Forms.OpenFileDialog
 
-        With openFileDialog
-            .AddExtension = True
-            .CheckPathExists = True
-            .DefaultExt = ".rtf"
-            .Filter = "Rich Text Format|*.rtf"
-            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        End With
+        openFileDialog.Title = "ThermoCraft Word - Open File"
+        openFileDialog.DefaultExt = "rtf"
+        openFileDialog.Filter = "Rich Text Files|*.rtf|Text Files|*.txt|HTML Files|*.htm|All Files|*.*"
+        openFileDialog.FilterIndex = 1
+        openFileDialog.ShowDialog()
 
-        If (openFileDialog.ShowDialog() = Windows.Forms.DialogResult.OK) _
-            And (openFileDialog.FileName.Length > 0) Then
+        If openFileDialog.FileName = "" Then Exit Sub
 
-            txtField.LoadFile(openFileDialog.FileName)
+        Dim strExt As String
+        strExt = System.IO.Path.GetExtension(openFileDialog.FileName)
+        strExt = strExt.ToUpper()
 
-            fileGlobalName = openFileDialog.FileName
-            Me.Text = "Word Processor | " & fileGlobalName
+        Select Case strExt
+            Case ".RTF"
 
-        End If
+                txtField.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.RichText)
+
+            Case Else
+
+                Dim txtReader As System.IO.StreamReader
+                txtReader = New System.IO.StreamReader(openFileDialog.FileName)
+                txtField.Text = txtReader.ReadToEnd
+                txtReader.Close()
+                txtReader = Nothing
+                txtField.SelectionStart = 0
+                txtField.SelectionLength = 0
+
+        End Select
+
+        fileGlobalName = openFileDialog.FileName
+        txtField.Modified = False
+        Me.Text = "ThermoCraft Word - " & fileGlobalName.ToString()
 
     End Sub
 
@@ -309,7 +367,98 @@
 
         ' Help
 
+    End Sub
+
+    Private Sub cmdSaveTS_Click(sender As Object, e As EventArgs) Handles cmdSaveTS.Click
+
+        cmdSave.PerformClick()
 
     End Sub
+
+    Private Sub cmdNew_Click(sender As Object, e As EventArgs) Handles cmdNew.Click
+
+        If txtField.Modified Then
+
+            Dim userPrompt As Integer
+            userPrompt = MessageBox.Show("The Current Docuement Has Not Been Saved, Do You Wish To Contiune Without Saving?", "Unsaved Document!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If userPrompt = Windows.Forms.DialogResult.Yes Then
+
+                txtField.Clear()
+
+            Else
+
+                Exit Sub
+
+            End If
+
+        Else
+
+            txtField.Clear()
+
+        End If
+
+        fileGlobalName = ""
+        Me.Text = "ThermoCraft Word - New Document"
+
+    End Sub
+
+    Private Sub applicationClose()
+
+        If txtField.Modified Then
+
+            Dim userPrompt As Integer
+            userPrompt = MessageBox.Show("The current document has not been saved, would you like to continue without saving?", "Unsaved Document", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If userPrompt = Windows.Forms.DialogResult.No Then
+
+                Exit Sub
+
+            Else
+
+                Application.Exit()
+
+            End If
+
+        Else
+
+            Application.Exit()
+
+        End If
+
+    End Sub
+
+#Region "Printing"
+
+    Private Sub filePrintDocument_BeginPrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles filePrintDocument.BeginPrint
+
+        ' Adapted from Microsoft's example for extended richtextbox control
+        '
+        fileCheckPrint = 0
+
+    End Sub
+
+
+    Private Sub filePrintDocument_PrintPage(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles filePrintDocument.PrintPage
+
+        ' Adapted from Microsoft's example for extended richtextbox control
+        '
+        ' Print the content of the RichTextBox. Store the last character printed.
+        fileCheckPrint = txtField.Print(fileCheckPrint, txtField.TextLength, e)
+
+        ' Look for more pages
+        If fileCheckPrint < txtField.TextLength Then
+
+            e.HasMorePages = True
+
+        Else
+
+            e.HasMorePages = False
+
+        End If
+
+    End Sub
+
+#End Region
 
 End Class

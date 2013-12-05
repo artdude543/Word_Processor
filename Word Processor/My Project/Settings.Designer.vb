@@ -53,54 +53,6 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property Open_Enable() As Boolean
-            Get
-                Return CType(Me("Open_Enable"),Boolean)
-            End Get
-            Set
-                Me("Open_Enable") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property Open_FileName() As String
-            Get
-                Return CType(Me("Open_FileName"),String)
-            End Get
-            Set
-                Me("Open_FileName") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property Download_Temp() As String
-            Get
-                Return CType(Me("Download_Temp"),String)
-            End Get
-            Set
-                Me("Download_Temp") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property Download_Enable() As Boolean
-            Get
-                Return CType(Me("Download_Enable"),Boolean)
-            End Get
-            Set
-                Me("Download_Enable") = value
-            End Set
-        End Property
     End Class
 End Namespace
 
